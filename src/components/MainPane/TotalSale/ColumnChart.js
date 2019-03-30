@@ -3,12 +3,8 @@ import { withTheme } from 'styled-components';
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
-  YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts';
 
@@ -65,51 +61,49 @@ const data = [
   },
   {
     name: 'nov',
-    current: 3490,
-    previous: 4300,
+    current: 5300,
+    previous: 3200,
   },
   {
     name: 'sec',
-    current: 3490,
-    previous: 4300,
+    current: 6400,
+    previous: 2490,
   },
 ];
 
-const columnChart = ({ theme }) => {
-  const jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
-  return (
-    <div
-      css={`
-        height: 280px;
-      `}
-    >
-      <ResponsiveContainer>
-        <BarChart
-          height={300}
-          barSize={10}
-          barGap={3}
-          data={data}
-          margin={{
-            top: 5,
-            right: 40,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
-          <XAxis
-            dataKey="name"
-            axisLine={true}
-            tickLine={false}
-            tickMargin={15}
-          />
-          <Bar dataKey="current" fill={theme.chart.primary} />
-          <Bar dataKey="previous" fill={theme.chart.secondary} />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+const columnChart = ({ theme }) => (
+  <div
+    css={`
+      height: 280px;
+      margin-top: 50px;
+    `}
+  >
+    <ResponsiveContainer>
+      <BarChart
+        height={300}
+        barSize={10}
+        barGap={3}
+        data={data}
+        margin={{
+          top: 5,
+          right: 0,
+          left: 0,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
+        <XAxis
+          dataKey="name"
+          axisLine={true}
+          tickLine={false}
+          tickMargin={15}
+        />
+        <Bar dataKey="current" fill={theme.chart.primary} />
+        <Bar dataKey="previous" fill={theme.chart.secondary} />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+);
 
 const ColumnChart = withTheme(columnChart);
 
