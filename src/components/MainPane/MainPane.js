@@ -1,4 +1,5 @@
 import React from 'react';
+import { TotalSale } from './TotalSale';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -7,5 +8,9 @@ const Container = styled.div`
 `;
 
 export const MainPane = () => {
-  return <Container>Main</Container>;
+  return (
+    <Container>
+      <TotalSale />
+    </Container>
+  );
 };
