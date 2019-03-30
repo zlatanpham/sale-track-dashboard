@@ -7,11 +7,12 @@ export const theme = {
       secondaryBackground: '#ffffff',
       primary: 'hsl(148, 49%, 55%)',
     },
+    chart: {
+      primary: 'hsl(0, 0%, 14%)',
+      secondary: 'hsl(0, 0%, 70%)',
+    },
   },
   dark: {
-    main: {
-      foreground: '#fdfdfd',
-      background: '#141311',
-    },
+    main: {},
   },
 };
