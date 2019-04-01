@@ -11,11 +11,9 @@ const Heading = styled.h4`
   color: ${props => props.theme.main.secondaryForeground};
 `;
 
-export const Container = ({ children, title }) => {
-  return (
-    <Wrapper>
-      <Heading>{title}</Heading>
-      {children}
-    </Wrapper>
-  );
-};
+export const Container = ({ children, title, ...rest }) => (
+  <Wrapper {...rest}>
+    <Heading>{title}</Heading>
+    {children}
+  </Wrapper>
+);

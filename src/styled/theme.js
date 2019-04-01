@@ -15,6 +15,11 @@ export const theme = {
       secondary: 'hsl(0, 0%, 70%)',
       tertiary: 'hsl(0, 0%, 80%)',
     },
+    map: {
+      markBackground: 'hsl(148, 49%, 55%)',
+      markForeground: 'hsl(0, 0%, 100%)',
+      background: 'hsl(0, 0%, 14%)',
+    },
   },
   dark: {
     main: {
@@ -31,6 +36,11 @@ export const theme = {
       primary: 'hsl(148, 49%, 55%)',
       secondary: 'hsl(0, 0%, 20%)',
       tertiary: 'hsl(0, 0%, 15%)',
+    },
+    map: {
+      markBackground: 'hsl(148, 49%, 55%)',
+      markForeground: 'hsl(0, 0%, 100%)',
+      background: 'hsl(0, 0%, 30%)',
     },
   },
 };

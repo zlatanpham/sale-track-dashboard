@@ -5,7 +5,7 @@ import ItemList from './TotalSale/ItemList';
 
 const Container = styled.div`
   padding: 40px 70px;
-  width: 100%;
+  width: calc(100% - 420px);
 `;
 
 export const MainPane = () => {
