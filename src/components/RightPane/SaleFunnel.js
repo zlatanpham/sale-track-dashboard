@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import { Container } from './shared/Container';
 import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
+import { Counter } from '../Counter';
 
 const data = [
   {
@@ -46,8 +47,8 @@ const Status = ({ num }) => (
           color: ${props => props.theme.main.danger};
         `}
       />
-    )}{' '}
-    <span>{Math.abs(num)}%</span>
+    )}
+    <Counter fixed={0}>{Math.abs(num)}</Counter>%
   </span>
 );
 

@@ -4,6 +4,7 @@ import tw from 'tailwind.macro';
 import { MdArrowUpward } from 'react-icons/md';
 
 import { BarChart, Bar } from 'recharts';
+import { Counter } from '@/components/Counter';
 
 const StackChart = withTheme(({ theme, data }) => (
   <BarChart width={110} height={60} barSize={4} data={data}>
@@ -87,11 +88,15 @@ const Item = ({ name, inventory, price, sale, trend }) => (
     </Info>
     <LabelColumn css="width: 15%">
       <h6>Inventory</h6>
-      <div>{inventory}</div>
+      <div>
+        <Counter fixed={0}>{inventory}</Counter>
+      </div>
     </LabelColumn>
     <LabelColumn css="width: 15%">
       <h6>Price</h6>
-      <div>${price}</div>
+      <div>
+        $<Counter>{price}</Counter>
+      </div>
     </LabelColumn>
     <LabelColumn css="width: 15%">
       <h6>Sales</h6>
@@ -104,7 +109,7 @@ const Item = ({ name, inventory, price, sale, trend }) => (
           }
         `}
       >
-        <MdArrowUpward /> ${sale}
+        <MdArrowUpward /> $<Counter fixed={0}>{sale}</Counter>
       </div>
     </LabelColumn>
     <StackChart data={trend} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from './shared/Container';
 import { ProgressBar } from '@/components/ProgressBar';
+import { Counter } from '../Counter';
 
 const data = [
   { name: 'Direct', revenue: 67800, percent: 45.8, progress: 70 },
@@ -19,7 +20,9 @@ const Item = ({ name, revenue, percent, progress }) => (
     <div className="flex justify-between font-semibold tracking-wide mb-2">
       <span className="w-2/5">{name}</span>
       <span className="w-2/5">${revenue.toLocaleString('currency')}</span>
-      <span className="w-1/5 text-right">{percent}%</span>
+      <span className="w-1/5 text-right">
+        <Counter>{percent}</Counter>%
+      </span>
     </div>
     <ProgressBar percent={progress} />
   </div>
