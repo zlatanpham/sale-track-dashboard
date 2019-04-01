@@ -16,8 +16,9 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const App = () => {
-  const [themeToggled, toggleTheme] = useState(false);
-  console.log(themeToggled);
+  const [themeToggled, toggleTheme] = useState(
+    localStorage.getItem('darkTheme'),
+  );
   return (
     <ThemeProvider theme={themeToggled ? theme.dark : theme.light}>
       <div className="App">
@@ -27,7 +28,10 @@ const App = () => {
           <MainPane />
           <RightPane
             themeToggled={themeToggled}
-            onThemeToggle={() => toggleTheme(!themeToggled)}
+            onThemeToggle={() => {
+              localStorage.setItem('darkTheme', !themeToggled);
+              toggleTheme(!themeToggled);
+            }}
           />
         </Body>
       </div>
