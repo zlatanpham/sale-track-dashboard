@@ -8,18 +8,16 @@ const Container = styled.div`
   ${tw`flex items-center justify-end`}
 `;
 
-export const ThemeToggle = ({ themeToggled, onThemeToggle }) => {
-  return (
-    <Container>
-      <span
-        className={
-          'mr-2 mb-1 font-semibold text-sm' +
-          (themeToggled ? '' : ' opacity-50 line-through')
-        }
-      >
-        Dark mode
-      </span>
-      <Toggle toggled={themeToggled} onToggle={onThemeToggle} />
-    </Container>
-  );
-};
+export const ThemeToggle = ({ themeToggled, onThemeToggle }) => (
+  <Container>
+    <span
+      className={
+        'mr-2 mb-1 font-semibold text-sm' +
+        (themeToggled ? '' : ' opacity-50 line-through')
+      }
+    >
+      Dark mode
+    </span>
+    <Toggle toggled={themeToggled} onToggle={onThemeToggle} />
+  </Container>
+);
