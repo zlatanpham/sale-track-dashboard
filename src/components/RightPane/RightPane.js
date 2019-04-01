@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ThemeToggle } from './ThemeToggle';
 import { SaleFunnel } from './SaleFunnel';
+import Revenue from './Revenue';
 
 const Container = styled.div`
   border-left: 1px solid #ddd;
@@ -14,6 +15,7 @@ export const RightPane = () => {
     <Container>
       <ThemeToggle />
       <SaleFunnel />
+      <Revenue />
     </Container>
   );
 };
