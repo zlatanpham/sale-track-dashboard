@@ -91,7 +91,12 @@ const columnChart = ({ theme }) => (
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" horizontal vertical={false} />
+        <CartesianGrid
+          stroke={theme.chart.secondary}
+          strokeDasharray="3 3"
+          horizontal
+          vertical={false}
+        />
         <XAxis
           dataKey="name"
           axisLine={true}

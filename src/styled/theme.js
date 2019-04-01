@@ -17,6 +17,20 @@ export const theme = {
     },
   },
   dark: {
-    main: {},
+    main: {
+      foreground: 'hsl(0, 0%, 80%)',
+      secondaryForeground: 'hsl(0, 0%, 50%)',
+      background: 'hsl(0, 0%, 7%)',
+      secondaryBackground: 'hsl(0, 0%, 12%)',
+      border: 'hsl(0, 0%, 15%)',
+      primary: 'hsl(148, 49%, 55%)',
+      success: 'hsl(148, 49%, 55%)',
+      danger: 'hsl(2, 81%, 60%)',
+    },
+    chart: {
+      primary: 'hsl(148, 49%, 55%)',
+      secondary: 'hsl(0, 0%, 20%)',
+      tertiary: 'hsl(0, 0%, 15%)',
+    },
   },
 };
