@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import tw from 'tailwind.macro';
+import { MdArrowUpward } from 'react-icons/md';
 
 import { BarChart, Bar } from 'recharts';
 
@@ -94,7 +95,17 @@ const Item = ({ name, inventory, price, sale, trend }) => (
     </LabelColumn>
     <LabelColumn css="width: 15%">
       <h6>Sales</h6>
-      <div>{sale}</div>
+      <div
+        css={`
+          ${tw`flex`}
+          svg {
+            font-size: 16px;
+            color: ${props => props.theme.main.primary};
+          }
+        `}
+      >
+        <MdArrowUpward /> ${sale}
+      </div>
     </LabelColumn>
     <StackChart data={trend} />
   </div>

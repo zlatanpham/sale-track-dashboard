@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ThemeToggle } from './ThemeToggle';
+import { SaleFunnel } from './SaleFunnel';
 
 const Container = styled.div`
   border-left: 1px solid #ddd;
@@ -8,5 +10,10 @@ const Container = styled.div`
 `;
 
 export const RightPane = () => {
-  return <Container>Right Pane</Container>;
+  return (
+    <Container>
+      <ThemeToggle />
+      <SaleFunnel />
+    </Container>
+  );
 };

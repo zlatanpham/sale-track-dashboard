@@ -65,7 +65,7 @@ const data = [
     previous: 3200,
   },
   {
-    name: 'sec',
+    name: 'dec',
     current: 6400,
     previous: 2490,
   },

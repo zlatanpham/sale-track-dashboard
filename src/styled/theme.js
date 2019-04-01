@@ -5,8 +5,10 @@ export const theme = {
       secondaryForeground: 'hsl(0, 0%, 70%)',
       background: '#efefef',
       secondaryBackground: '#ffffff',
-      primary: 'hsl(148, 49%, 55%)',
       border: 'hsl(0, 0%, 82%)',
+      primary: 'hsl(148, 49%, 55%)',
+      success: 'hsl(148, 49%, 55%)',
+      danger: 'hsl(2, 81%, 60%)',
     },
     chart: {
       primary: 'hsl(0, 0%, 14%)',

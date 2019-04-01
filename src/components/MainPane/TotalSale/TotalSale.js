@@ -3,6 +3,7 @@ import tw from 'tailwind.macro';
 import styled from 'styled-components';
 import { MdArrowUpward } from 'react-icons/md';
 import ColumnChart from './ColumnChart';
+
 const Heading = styled.h3`
     ${tw`uppercase text-sm font-semibold my-0 tracking-wide`}
     color: ${props => props.theme.main.secondaryForeground}
