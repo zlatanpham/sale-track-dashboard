@@ -6,6 +6,7 @@ import Sidebar from '@/components/Sidebar';
 import Body from './components/Body';
 import { MainPane } from './components/MainPane';
 import { RightPane } from './components/RightPane';
+import { ItemDetail } from './components/ItemDetail';
 
 const GlobalStyles = createGlobalStyle`
   html, body {
@@ -33,6 +34,7 @@ const App = () => {
               toggleTheme(!themeToggled);
             }}
           />
+          <ItemDetail />
         </Body>
       </div>
     </ThemeProvider>

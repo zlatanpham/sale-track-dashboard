@@ -52,7 +52,7 @@ const Status = ({ num }) => (
   </span>
 );
 
-const Item = ({ name, status }) => (
+export const Item = ({ name, status }) => (
   <div
     css={`
       ${tw`flex items-end`}

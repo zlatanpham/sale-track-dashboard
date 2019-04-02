@@ -16,7 +16,7 @@ export const theme = {
       tertiary: 'hsl(0, 0%, 80%)',
     },
     map: {
-      markBackground: 'hsl(148, 49%, 55%)',
+      markBackground: 'hsl(148, 49%, 75%)',
       markForeground: 'hsl(0, 0%, 100%)',
       background: 'hsl(0, 0%, 14%)',
     },

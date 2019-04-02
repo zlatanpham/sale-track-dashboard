@@ -43,7 +43,7 @@ export const Region = props => {
                 height: ${size}px;
                 justify-content: center;
                 font-weight: bold;
-                font-size: 14px;
+                font-size: 13px;
                 ${props => `
                   background-color: ${props.theme.map.markBackground};
                   color: ${props.theme.map.markForeground};
@@ -51,7 +51,7 @@ export const Region = props => {
               `}
               style={{ top: `${top}%`, left: `${left}%` }}
             >
-              {percent}
+              {percent}%
             </div>
           );
         })}
