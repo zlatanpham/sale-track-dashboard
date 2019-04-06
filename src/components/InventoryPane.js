@@ -77,9 +77,9 @@ export const InventoryPane = () => {
   } = useContext(AppContext);
 
   const { transform } = useSpring({ transform: showInventoryPane ? 0 : 102 });
-  const { data, totalSale, price, id, name, detail, grow } =
+  const { data, totalSale, price, id, name, detail, sale } =
     activeInventory || {};
-  const isGrow = grow > 0;
+  const isGrow = sale > 0;
   return (
     <animated.div
       style={{
@@ -118,7 +118,7 @@ export const InventoryPane = () => {
               </h4>
               <p>
                 {isGrow ? <MdArrowUpward /> : <MdArrowDownward />}$
-                <Counter>{grow}</Counter>
+                <Counter>{sale}</Counter>
               </p>
               <TrendChart data={data} isGrow={isGrow} />
             </Trend>

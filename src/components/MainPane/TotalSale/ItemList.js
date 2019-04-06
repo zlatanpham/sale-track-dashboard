@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled, { withTheme } from 'styled-components';
 import tw from 'tailwind.macro';
-import { MdArrowUpward } from 'react-icons/md';
+import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 
 import { BarChart, Bar } from 'recharts';
 import { Counter } from '@/components/Counter';
@@ -21,11 +21,10 @@ const items = [
   {
     id: 43283,
     totalSale: 3213.2,
-    grow: 341,
+    sale: 341,
     name: 'Classic white denim skirt',
     inventory: 293,
     price: 134.99,
-    sale: 133,
     trend: Array.from({ length: 7 }, () => {
       const number = Math.random() * 80 + 10;
       return { previous: 100 - number, current: number };
@@ -47,41 +46,12 @@ const items = [
     data: generateChartData(),
   },
   {
-    id: 21821,
-    totalSale: 7212.21,
-    grow: 141,
-    name: 'Open cabel-knit sweater',
-    inventory: 478,
-    price: 234.34,
-    sale: 85,
-    trend: Array.from({ length: 7 }, () => {
-      const number = Math.random() * 80 + 10;
-      return { previous: 100 - number, current: number };
-    }),
-    detail: [
-      {
-        name: 'Cart',
-        status: 2,
-      },
-      {
-        name: 'Checkout',
-        status: 3,
-      },
-      {
-        name: 'Sessions',
-        status: 13,
-      },
-    ],
-    data: generateChartData(),
-  },
-  {
     id: 90882,
     totalSale: 882.21,
-    grow: -172,
+    sale: -172,
     name: 'Bandanna shirt with a lapel collar',
     inventory: 120,
     price: 154.99,
-    sale: 218,
     trend: Array.from({ length: 7 }, () => {
       const number = Math.random() * 80 + 10;
       return { previous: 100 - number, current: number };
@@ -98,6 +68,33 @@ const items = [
       {
         name: 'Sessions',
         status: 12,
+      },
+    ],
+    data: generateChartData(),
+  },
+  {
+    id: 21821,
+    totalSale: 7212.21,
+    sale: 141,
+    name: 'Open cabel-knit sweater',
+    inventory: 478,
+    price: 234.34,
+    trend: Array.from({ length: 7 }, () => {
+      const number = Math.random() * 80 + 10;
+      return { previous: 100 - number, current: number };
+    }),
+    detail: [
+      {
+        name: 'Cart',
+        status: 2,
+      },
+      {
+        name: 'Checkout',
+        status: 3,
+      },
+      {
+        name: 'Sessions',
+        status: 13,
       },
     ],
     data: generateChartData(),
@@ -135,6 +132,7 @@ div{
 const Item = ({ data }) => {
   const { setActiveInventory, setShowInventoryPane } = useContext(AppContext);
   const { name, inventory, price, sale, trend } = data;
+  const isGrow = sale > 0;
   return (
     <div
       css={`
@@ -166,15 +164,20 @@ const Item = ({ data }) => {
       <LabelColumn css="width: 15%">
         <h6>Sales</h6>
         <div
+          isGrow={isGrow}
           css={`
             ${tw`flex`}
             svg {
               font-size: 16px;
-              color: ${props => props.theme.main.primary};
+              color: ${props =>
+                props.isGrow
+                  ? props.theme.main.success
+                  : props.theme.main.danger};
             }
           `}
         >
-          <MdArrowUpward /> $<Counter fixed={0}>{sale}</Counter>
+          {isGrow ? <MdArrowUpward /> : <MdArrowDownward />} $
+          <Counter fixed={0}>{Math.abs(sale)}</Counter>
         </div>
       </LabelColumn>
       <StackChart data={trend} />
