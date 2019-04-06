@@ -68,13 +68,14 @@ const CloseButton = styled.button`
 `;
 
 export const InventoryPane = () => {
-  const { activeInventory, setActiveInventory } = useContext(AppContext);
-  if (!activeInventory) {
-    return null;
-  }
-  const { transform } = useSpring({ transform: activeInventory ? 0 : 102 });
-  const { data, totalSale, price, id, name, detail } = activeInventory;
-  console.log(activeInventory);
+  const {
+    showInventoryPane,
+    setShowInventoryPane,
+    activeInventory,
+  } = useContext(AppContext);
+
+  const { transform } = useSpring({ transform: showInventoryPane ? 0 : 102 });
+  const { data, totalSale, price, id, name, detail } = activeInventory || {};
   return (
     <animated.div
       style={{
@@ -87,38 +88,40 @@ export const InventoryPane = () => {
         transform: transform.interpolate(x => `translate3d(${x}%, 0, 0)`),
       }}
     >
-      <Container>
-        <CloseButton onClick={() => setActiveInventory(null)}>
-          <MdClose />
-        </CloseButton>
-        <Image />
-        <div
-          css={`
-            padding: 40px;
-          `}
-        >
-          <Tag>#{id}</Tag>
-          <Name>{name}</Name>
-          <Price>${price}</Price>
-          <Description>
-            Women's high neck sweater shirt with a soft fevenish. Available in
-            different colors and prints.
-          </Description>
-          <Trend>
-            <h4>${totalSale}</h4>
-            <p>
-              <MdArrowUpward />
-              $345.00
-            </p>
-            <TrendChart data={data} />
-          </Trend>
-          <div className="mt-10">
-            {detail.map((item, index) => (
-              <Item {...item} key={index} />
-            ))}
+      {activeInventory ? (
+        <Container>
+          <CloseButton onClick={() => setShowInventoryPane(false)}>
+            <MdClose />
+          </CloseButton>
+          <Image />
+          <div
+            css={`
+              padding: 40px;
+            `}
+          >
+            <Tag>#{id}</Tag>
+            <Name>{name}</Name>
+            <Price>${price}</Price>
+            <Description>
+              Women's high neck sweater shirt with a soft fevenish. Available in
+              different colors and prints.
+            </Description>
+            <Trend>
+              <h4>${totalSale}</h4>
+              <p>
+                <MdArrowUpward />
+                $345.00
+              </p>
+              <TrendChart data={data} />
+            </Trend>
+            <div className="mt-10">
+              {detail.map((item, index) => (
+                <Item {...item} key={index} />
+              ))}
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      ) : null}
     </animated.div>
   );
 };

@@ -133,7 +133,7 @@ div{
 `;
 
 const Item = ({ data }) => {
-  const { setActiveInventory } = useContext(AppContext);
+  const { setActiveInventory, setShowInventoryPane } = useContext(AppContext);
   const { name, inventory, price, sale, trend } = data;
   return (
     <div
@@ -142,7 +142,10 @@ const Item = ({ data }) => {
         padding: 15px 0;
         border-bottom: 1px solid ${props => props.theme.main.border};
       `}
-      onClick={() => setActiveInventory(data)}
+      onClick={() => {
+        setShowInventoryPane(true);
+        setActiveInventory(data);
+      }}
     >
       <Info css="width: 45%">
         <Image />

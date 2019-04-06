@@ -22,8 +22,16 @@ const App = () => {
     localStorage.getItem('darkTheme'),
   );
   const [activeInventory, setActiveInventory] = useState(null);
+  const [showInventoryPane, setShowInventoryPane] = useState(false);
   return (
-    <AppContext.Provider value={{ activeInventory, setActiveInventory }}>
+    <AppContext.Provider
+      value={{
+        activeInventory,
+        setActiveInventory,
+        showInventoryPane,
+        setShowInventoryPane,
+      }}
+    >
       <ThemeProvider theme={themeToggled ? theme.dark : theme.light}>
         <div className="App">
           <GlobalStyles />
