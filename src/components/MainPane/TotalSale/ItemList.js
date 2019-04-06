@@ -33,15 +33,15 @@ const items = [
     detail: [
       {
         name: 'Cart',
-        status: -5,
+        status: 23,
       },
       {
         name: 'Checkout',
-        status: 8,
+        status: 5,
       },
       {
         name: 'Sessions',
-        status: 12,
+        status: -21,
       },
     ],
     data: generateChartData(),
@@ -61,15 +61,15 @@ const items = [
     detail: [
       {
         name: 'Cart',
-        status: -5,
+        status: 2,
       },
       {
         name: 'Checkout',
-        status: 8,
+        status: 3,
       },
       {
         name: 'Sessions',
-        status: 12,
+        status: 13,
       },
     ],
     data: generateChartData(),
@@ -77,7 +77,7 @@ const items = [
   {
     id: 90882,
     totalSale: 882.21,
-    grow: 572,
+    grow: -172,
     name: 'Bandanna shirt with a lapel collar',
     inventory: 120,
     price: 154.99,

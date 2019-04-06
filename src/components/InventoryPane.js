@@ -6,6 +6,7 @@ import { MdClose, MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 import { TrendChart } from './TrendChart';
 import { useSpring, animated } from 'react-spring';
 import { AppContext } from '@/context';
+import { Counter } from './Counter';
 
 const Container = styled.div`
   ${tw`absolute pin`};
@@ -50,7 +51,8 @@ const Trend = styled.div`
   }
 
   > p {
-    color: ${props => props.theme.main.success};
+    color: ${props =>
+      props.isGrow ? props.theme.main.success : props.theme.main.danger};
     font-weight: 600;
     font-size: 16px;
   }
@@ -75,7 +77,9 @@ export const InventoryPane = () => {
   } = useContext(AppContext);
 
   const { transform } = useSpring({ transform: showInventoryPane ? 0 : 102 });
-  const { data, totalSale, price, id, name, detail } = activeInventory || {};
+  const { data, totalSale, price, id, name, detail, grow } =
+    activeInventory || {};
+  const isGrow = grow > 0;
   return (
     <animated.div
       style={{
@@ -101,18 +105,22 @@ export const InventoryPane = () => {
           >
             <Tag>#{id}</Tag>
             <Name>{name}</Name>
-            <Price>${price}</Price>
+            <Price>
+              $<Counter>{price}</Counter>
+            </Price>
             <Description>
               Women's high neck sweater shirt with a soft fevenish. Available in
               different colors and prints.
             </Description>
-            <Trend>
-              <h4>${totalSale}</h4>
+            <Trend isGrow={isGrow}>
+              <h4>
+                $<Counter>{totalSale}</Counter>
+              </h4>
               <p>
-                <MdArrowUpward />
-                $345.00
+                {isGrow ? <MdArrowUpward /> : <MdArrowDownward />}$
+                <Counter>{grow}</Counter>
               </p>
-              <TrendChart data={data} />
+              <TrendChart data={data} isGrow={isGrow} />
             </Trend>
             <div className="mt-10">
               {detail.map((item, index) => (

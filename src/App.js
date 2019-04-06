@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
 
 const App = () => {
   const [themeToggled, toggleTheme] = useState(
-    localStorage.getItem('darkTheme'),
+    localStorage.getItem('darkTheme') === 'true',
   );
   const [activeInventory, setActiveInventory] = useState(null);
   const [showInventoryPane, setShowInventoryPane] = useState(false);

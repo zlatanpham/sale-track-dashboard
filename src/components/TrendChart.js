@@ -1,10 +1,12 @@
 import React from 'react';
 import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { withTheme } from 'styled-components';
 
-export const TrendChart = ({ data }) => {
+const trendChart = ({ data, isGrow = false, theme }) => {
   const transformedData = data.map(sale => ({
     sale,
   }));
+  const color = isGrow ? theme.main.success : theme.main.danger;
   return (
     <div
       css={`
@@ -17,14 +19,14 @@ export const TrendChart = ({ data }) => {
         <AreaChart width={730} height={250} data={transformedData}>
           <defs>
             <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+              <stop offset="5%" stopColor={color} stopOpacity={0.8} />
+              <stop offset="95%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
           <Area
             type="linear"
             dataKey="sale"
-            stroke="#82ca9d"
+            stroke={color}
             fillOpacity={1}
             fill="url(#colorPv)"
           />
@@ -33,3 +35,5 @@ export const TrendChart = ({ data }) => {
     </div>
   );
 };
+
+export const TrendChart = withTheme(trendChart);
