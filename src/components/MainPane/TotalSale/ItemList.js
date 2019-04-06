@@ -9,8 +9,20 @@ import { AppContext } from '@/context';
 
 const StackChart = withTheme(({ theme, data }) => (
   <BarChart width={110} height={60} barSize={4} data={data}>
-    <Bar dataKey="current" stackId="a" fill={theme.chart.primary} />
-    <Bar dataKey="previous" stackId="a" fill={theme.chart.tertiary} />
+    <Bar
+      animationDuration={1000}
+      animationEasing="ease-in-out"
+      dataKey="current"
+      stackId="a"
+      fill={theme.chart.primary}
+    />
+    <Bar
+      animationDuration={1000}
+      animationEasing="ease-in-out"
+      dataKey="previous"
+      stackId="a"
+      fill={theme.chart.tertiary}
+    />
   </BarChart>
 ));
 

@@ -103,8 +103,18 @@ const columnChart = ({ theme }) => (
           tickLine={false}
           tickMargin={15}
         />
-        <Bar dataKey="current" fill={theme.chart.primary} />
-        <Bar dataKey="previous" fill={theme.chart.secondary} />
+        <Bar
+          dataKey="current"
+          animationDuration={1000}
+          animationEasing="ease-in-out"
+          fill={theme.chart.primary}
+        />
+        <Bar
+          dataKey="previous"
+          animationDuration={1000}
+          animationEasing="ease-in-out"
+          fill={theme.chart.secondary}
+        />
       </BarChart>
     </ResponsiveContainer>
   </div>
