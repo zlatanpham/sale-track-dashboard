@@ -14,8 +14,14 @@ const StackChart = withTheme(({ theme, data }) => (
   </BarChart>
 ));
 
+const generateChartData = () =>
+  Array.from({ length: 10 }, () => parseInt(Math.random() * 2000 + 500));
+
 const items = [
   {
+    id: 43283,
+    totalSale: 3213.2,
+    grow: 341,
     name: 'Classic white denim skirt',
     inventory: 293,
     price: 134.99,
@@ -24,8 +30,26 @@ const items = [
       const number = Math.random() * 80 + 10;
       return { previous: 100 - number, current: number };
     }),
+    detail: [
+      {
+        name: 'Cart',
+        status: -5,
+      },
+      {
+        name: 'Checkout',
+        status: 8,
+      },
+      {
+        name: 'Sessions',
+        status: 12,
+      },
+    ],
+    data: generateChartData(),
   },
   {
+    id: 21821,
+    totalSale: 7212.21,
+    grow: 141,
     name: 'Open cabel-knit sweater',
     inventory: 478,
     price: 234.34,
@@ -34,8 +58,26 @@ const items = [
       const number = Math.random() * 80 + 10;
       return { previous: 100 - number, current: number };
     }),
+    detail: [
+      {
+        name: 'Cart',
+        status: -5,
+      },
+      {
+        name: 'Checkout',
+        status: 8,
+      },
+      {
+        name: 'Sessions',
+        status: 12,
+      },
+    ],
+    data: generateChartData(),
   },
   {
+    id: 90882,
+    totalSale: 882.21,
+    grow: 572,
     name: 'Bandanna shirt with a lapel collar',
     inventory: 120,
     price: 154.99,
@@ -44,6 +86,21 @@ const items = [
       const number = Math.random() * 80 + 10;
       return { previous: 100 - number, current: number };
     }),
+    detail: [
+      {
+        name: 'Cart',
+        status: -5,
+      },
+      {
+        name: 'Checkout',
+        status: 8,
+      },
+      {
+        name: 'Sessions',
+        status: 12,
+      },
+    ],
+    data: generateChartData(),
   },
 ];
 
@@ -75,8 +132,9 @@ div{
   }
 `;
 
-const Item = ({ name, inventory, price, sale, trend }) => {
+const Item = ({ data }) => {
   const { setActiveInventory } = useContext(AppContext);
+  const { name, inventory, price, sale, trend } = data;
   return (
     <div
       css={`
@@ -84,7 +142,7 @@ const Item = ({ name, inventory, price, sale, trend }) => {
         padding: 15px 0;
         border-bottom: 1px solid ${props => props.theme.main.border};
       `}
-      onClick={() => setActiveInventory({})}
+      onClick={() => setActiveInventory(data)}
     >
       <Info css="width: 45%">
         <Image />
@@ -129,7 +187,7 @@ const ItemList = () => {
       `}
     >
       {items.map((item, index) => (
-        <Item {...item} key={index} />
+        <Item data={item} key={index} />
       ))}
     </div>
   );

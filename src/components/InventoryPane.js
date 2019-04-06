@@ -56,21 +56,6 @@ const Trend = styled.div`
   }
 `;
 
-const data = [
-  {
-    name: 'Cart',
-    status: -5,
-  },
-  {
-    name: 'Checkout',
-    status: 8,
-  },
-  {
-    name: 'Sessions',
-    status: 12,
-  },
-];
-
 const CloseButton = styled.button`
   ${tw`absolute rounded-full flex items-center justify-center`}
   color: ${props => props.theme.main.foreground};
@@ -84,7 +69,12 @@ const CloseButton = styled.button`
 
 export const InventoryPane = () => {
   const { activeInventory, setActiveInventory } = useContext(AppContext);
+  if (!activeInventory) {
+    return null;
+  }
   const { transform } = useSpring({ transform: activeInventory ? 0 : 102 });
+  const { data, totalSale, price, id, name, detail } = activeInventory;
+  console.log(activeInventory);
   return (
     <animated.div
       style={{
@@ -107,23 +97,23 @@ export const InventoryPane = () => {
             padding: 40px;
           `}
         >
-          <Tag>#45397</Tag>
-          <Name>Open cable-knit sweater</Name>
-          <Price>${'234, 54'}</Price>
+          <Tag>#{id}</Tag>
+          <Name>{name}</Name>
+          <Price>${price}</Price>
           <Description>
             Women's high neck sweater shirt with a soft fevenish. Available in
             different colors and prints.
           </Description>
           <Trend>
-            <h4>$3,324.00</h4>
+            <h4>${totalSale}</h4>
             <p>
               <MdArrowUpward />
               $345.00
             </p>
-            <TrendChart />
+            <TrendChart data={data} />
           </Trend>
           <div className="mt-10">
-            {data.map((item, index) => (
+            {detail.map((item, index) => (
               <Item {...item} key={index} />
             ))}
           </div>
