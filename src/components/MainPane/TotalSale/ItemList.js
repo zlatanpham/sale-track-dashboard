@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { withTheme } from 'styled-components';
 import tw from 'tailwind.macro';
 import { MdArrowUpward } from 'react-icons/md';
 
 import { BarChart, Bar } from 'recharts';
 import { Counter } from '@/components/Counter';
+import { AppContext } from '@/context';
 
 const StackChart = withTheme(({ theme, data }) => (
   <BarChart width={110} height={60} barSize={4} data={data}>
@@ -74,47 +75,51 @@ div{
   }
 `;
 
-const Item = ({ name, inventory, price, sale, trend }) => (
-  <div
-    css={`
-      ${tw`flex items-center`}
-      padding: 15px 0;
-      border-bottom: 1px solid ${props => props.theme.main.border};
-    `}
-  >
-    <Info css="width: 45%">
-      <Image />
-      <Name>{name}</Name>
-    </Info>
-    <LabelColumn css="width: 15%">
-      <h6>Inventory</h6>
-      <div>
-        <Counter fixed={0}>{inventory}</Counter>
-      </div>
-    </LabelColumn>
-    <LabelColumn css="width: 15%">
-      <h6>Price</h6>
-      <div>
-        $<Counter>{price}</Counter>
-      </div>
-    </LabelColumn>
-    <LabelColumn css="width: 15%">
-      <h6>Sales</h6>
-      <div
-        css={`
-          ${tw`flex`}
-          svg {
-            font-size: 16px;
-            color: ${props => props.theme.main.primary};
-          }
-        `}
-      >
-        <MdArrowUpward /> $<Counter fixed={0}>{sale}</Counter>
-      </div>
-    </LabelColumn>
-    <StackChart data={trend} />
-  </div>
-);
+const Item = ({ name, inventory, price, sale, trend }) => {
+  const { setActiveInventory } = useContext(AppContext);
+  return (
+    <div
+      css={`
+        ${tw`flex items-center`}
+        padding: 15px 0;
+        border-bottom: 1px solid ${props => props.theme.main.border};
+      `}
+      onClick={() => setActiveInventory({})}
+    >
+      <Info css="width: 45%">
+        <Image />
+        <Name>{name}</Name>
+      </Info>
+      <LabelColumn css="width: 15%">
+        <h6>Inventory</h6>
+        <div>
+          <Counter fixed={0}>{inventory}</Counter>
+        </div>
+      </LabelColumn>
+      <LabelColumn css="width: 15%">
+        <h6>Price</h6>
+        <div>
+          $<Counter>{price}</Counter>
+        </div>
+      </LabelColumn>
+      <LabelColumn css="width: 15%">
+        <h6>Sales</h6>
+        <div
+          css={`
+            ${tw`flex`}
+            svg {
+              font-size: 16px;
+              color: ${props => props.theme.main.primary};
+            }
+          `}
+        >
+          <MdArrowUpward /> $<Counter fixed={0}>{sale}</Counter>
+        </div>
+      </LabelColumn>
+      <StackChart data={trend} />
+    </div>
+  );
+};
 
 const ItemList = () => {
   return (

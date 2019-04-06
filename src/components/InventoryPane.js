@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import { Item } from './RightPane/SaleFunnel';
 import { MdClose, MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 import { TrendChart } from './TrendChart';
+import { useSpring, animated } from 'react-spring';
+import { AppContext } from '@/context';
 
 const Container = styled.div`
-  width: 420px;
-  ${tw`absolute pin-y pin-r`};
+  ${tw`absolute pin`};
   background-color: ${props => props.theme.main.background};
   border-left: 1px solid ${props => props.theme.main.border};
 `;
@@ -81,39 +82,53 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-export const ItemDetail = () => {
+export const InventoryPane = () => {
+  const { activeInventory, setActiveInventory } = useContext(AppContext);
+  const { transform } = useSpring({ transform: activeInventory ? 0 : 102 });
   return (
-    <Container>
-      <CloseButton>
-        <MdClose />
-      </CloseButton>
-      <Image />
-      <div
-        css={`
-          padding: 40px;
-        `}
-      >
-        <Tag>#45397</Tag>
-        <Name>Open cable-knit sweater</Name>
-        <Price>${'234, 54'}</Price>
-        <Description>
-          Women's high neck sweater shirt with a soft fevenish. Available in
-          different colors and prints.
-        </Description>
-        <Trend>
-          <h4>$3,324.00</h4>
-          <p>
-            <MdArrowUpward />
-            $345.00
-          </p>
-          <TrendChart />
-        </Trend>
-        <div className="mt-10">
-          {data.map((item, index) => (
-            <Item {...item} key={index} />
-          ))}
+    <animated.div
+      style={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        bottom: 0,
+        width: '420px',
+        zIndex: 999,
+        transform: transform.interpolate(x => `translate3d(${x}%, 0, 0)`),
+      }}
+    >
+      <Container>
+        <CloseButton onClick={() => setActiveInventory(null)}>
+          <MdClose />
+        </CloseButton>
+        <Image />
+        <div
+          css={`
+            padding: 40px;
+          `}
+        >
+          <Tag>#45397</Tag>
+          <Name>Open cable-knit sweater</Name>
+          <Price>${'234, 54'}</Price>
+          <Description>
+            Women's high neck sweater shirt with a soft fevenish. Available in
+            different colors and prints.
+          </Description>
+          <Trend>
+            <h4>$3,324.00</h4>
+            <p>
+              <MdArrowUpward />
+              $345.00
+            </p>
+            <TrendChart />
+          </Trend>
+          <div className="mt-10">
+            {data.map((item, index) => (
+              <Item {...item} key={index} />
+            ))}
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </animated.div>
   );
 };

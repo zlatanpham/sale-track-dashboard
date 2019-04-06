@@ -6,7 +6,8 @@ import Sidebar from '@/components/Sidebar';
 import Body from './components/Body';
 import { MainPane } from './components/MainPane';
 import { RightPane } from './components/RightPane';
-import { ItemDetail } from './components/ItemDetail';
+import { InventoryPane } from './components/InventoryPane';
+import { AppContext } from './context';
 
 const GlobalStyles = createGlobalStyle`
   html, body {
@@ -20,24 +21,27 @@ const App = () => {
   const [themeToggled, toggleTheme] = useState(
     localStorage.getItem('darkTheme'),
   );
+  const [activeInventory, setActiveInventory] = useState(null);
   return (
-    <ThemeProvider theme={themeToggled ? theme.dark : theme.light}>
-      <div className="App">
-        <GlobalStyles />
-        <Sidebar />
-        <Body>
-          <MainPane />
-          <RightPane
-            themeToggled={themeToggled}
-            onThemeToggle={() => {
-              localStorage.setItem('darkTheme', !themeToggled);
-              toggleTheme(!themeToggled);
-            }}
-          />
-          <ItemDetail />
-        </Body>
-      </div>
-    </ThemeProvider>
+    <AppContext.Provider value={{ activeInventory, setActiveInventory }}>
+      <ThemeProvider theme={themeToggled ? theme.dark : theme.light}>
+        <div className="App">
+          <GlobalStyles />
+          <Sidebar />
+          <Body>
+            <MainPane />
+            <RightPane
+              themeToggled={themeToggled}
+              onThemeToggle={() => {
+                localStorage.setItem('darkTheme', !themeToggled);
+                toggleTheme(!themeToggled);
+              }}
+            />
+            <InventoryPane />
+          </Body>
+        </div>
+      </ThemeProvider>
+    </AppContext.Provider>
   );
 };
 
