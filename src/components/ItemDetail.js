@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import { Item } from './RightPane/SaleFunnel';
-import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
+import { MdClose, MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 import { TrendChart } from './TrendChart';
 
 const Container = styled.div`
@@ -70,9 +70,23 @@ const data = [
   },
 ];
 
+const CloseButton = styled.button`
+  ${tw`absolute rounded-full flex items-center justify-center`}
+  color: ${props => props.theme.main.foreground};
+  top: 10px;
+  left: 10px;
+  background-color: ${props => props.theme.main.background};
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+`;
+
 export const ItemDetail = () => {
   return (
     <Container>
+      <CloseButton>
+        <MdClose />
+      </CloseButton>
       <Image />
       <div
         css={`
