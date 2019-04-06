@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${props => props.theme.main.background};
     color: ${props => props.theme.main.foreground};
     font-family: 'Inconsolata', monospace;
+    overflow-x:hidden;
   }
 `;
 
@@ -33,7 +34,7 @@ const App = () => {
       }}
     >
       <ThemeProvider theme={themeToggled ? theme.dark : theme.light}>
-        <div className="App">
+        <div className="app">
           <GlobalStyles />
           <Sidebar />
           <Body>

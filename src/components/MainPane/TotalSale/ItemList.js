@@ -15,7 +15,7 @@ const StackChart = withTheme(({ theme, data }) => (
 ));
 
 const generateChartData = () =>
-  Array.from({ length: 10 }, () => parseInt(Math.random() * 2000 + 500));
+  Array.from({ length: 15 }, () => parseInt(Math.random() * 2000 + 500));
 
 const items = [
   {
@@ -137,8 +137,11 @@ const Item = ({ data }) => {
     <div
       css={`
         ${tw`flex items-center`}
-        padding: 15px 0;
+        padding: 15px;
         border-bottom: 1px solid ${props => props.theme.main.border};
+        &:hover {
+          background-color: ${props => props.theme.main.secondaryBackground};
+        }
       `}
       onClick={() => {
         setShowInventoryPane(true);
