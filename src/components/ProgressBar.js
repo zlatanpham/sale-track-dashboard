@@ -2,10 +2,12 @@ import React from 'react';
 import { useSpring, animated, config } from 'react-spring';
 
 export const ProgressBar = ({ percent }) => {
-  const { width } = useSpring(
-    { from: { width: 0 }, to: { width: percent } },
-    config.slow,
-  );
+  const { width } = useSpring({
+    from: { width: 0 },
+    to: { width: percent },
+    config: config.slow,
+    delay: 100,
+  });
   return (
     <div
       css={`

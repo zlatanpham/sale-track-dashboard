@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.main.foreground};
     font-family: 'Inconsolata', monospace;
     overflow-x:hidden;
+    transition: background-color 0.4s ease;
   }
 `;
 
