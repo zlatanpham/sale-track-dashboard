@@ -1,10 +1,12 @@
 import React from 'react';
-import { Spring, config } from 'react-spring/renderprops';
+import { useSpring, animated } from 'react-spring';
 
 export const Counter = ({ children, fixed = 2 }) => {
+  const { number } = useSpring({
+    from: { number: 0 },
+    to: { number: parseFloat(children) },
+  });
   return (
-    <Spring from={{ number: 0 }} to={{ number: children }} config={config.slow}>
-      {props => <span>{props.number.toFixed(fixed)}</span>}
-    </Spring>
+    <animated.span>{number.interpolate(x => x.toFixed(fixed))}</animated.span>
   );
 };
