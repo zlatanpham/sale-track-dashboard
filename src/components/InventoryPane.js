@@ -10,7 +10,7 @@ import { Counter } from './Counter';
 
 const Container = styled.div`
   ${tw`absolute pin`};
-  background-color: ${props => props.theme.main.background};
+  background-color: ${props => props.theme.main.secondaryBackground};
   border-left: 1px solid ${props => props.theme.main.border};
 `;
 
@@ -18,7 +18,7 @@ const Image = () => (
   <div
     css={`
       padding-bottom: 60%;
-      background-color: ${props => props.theme.main.secondaryBackground};
+      background-color: ${props => props.theme.main.tertiaryBackground};
     `}
   />
 );
@@ -87,7 +87,7 @@ export const InventoryPane = () => {
         right: 0,
         top: 0,
         bottom: 0,
-        width: '420px',
+        width: '480px',
         zIndex: 999,
         transform: transform.interpolate(x => `translate3d(${x}%, 0, 0)`),
       }}

@@ -7,8 +7,8 @@ import { Region } from './Region';
 
 const Container = styled.div`
   border-left: 1px solid ${props => props.theme.main.border};
-  width: 450px;
-  flex: 420px 0 0;
+  width: 480px;
+  flex: 480px 0 0;
 `;
 
 export const RightPane = ({ themeToggled, onThemeToggle }) => {

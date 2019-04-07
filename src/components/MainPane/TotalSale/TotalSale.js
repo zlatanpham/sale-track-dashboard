@@ -1,7 +1,7 @@
 import React from 'react';
 import tw from 'tailwind.macro';
 import styled from 'styled-components';
-import { MdArrowUpward } from 'react-icons/md';
+import { MdArrowUpward, MdKeyboardArrowDown } from 'react-icons/md';
 import ColumnChart from './ColumnChart';
 import { Counter } from '@/components/Counter';
 
@@ -11,7 +11,7 @@ const Heading = styled.h3`
 `;
 
 const SumNum = styled.div`
-  ${tw`uppercase text-xl font-semibold my-1 tracking-wide`}
+  ${tw`uppercase text-2xl font-semibold my-1 tracking-wide`}
 `;
 
 const GrowNum = styled.div`
@@ -27,7 +27,7 @@ const GrowNum = styled.div`
 export const TotalSale = () => {
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex items-start justify-between">
         <div>
           <Heading>Total sale</Heading>
           <SumNum>
@@ -36,6 +36,17 @@ export const TotalSale = () => {
           <GrowNum>
             <MdArrowUpward /> $<Counter>2184</Counter>
           </GrowNum>
+        </div>
+
+        <div
+          css={`
+            ${tw`flex pb-2 uppercase font-bold justify-between tracking-wide`}
+            width: 160px;
+            border-bottom: 2px solid ${props => props.theme.main.border};
+          `}
+        >
+          Last Year
+          <MdKeyboardArrowDown />
         </div>
       </div>
 

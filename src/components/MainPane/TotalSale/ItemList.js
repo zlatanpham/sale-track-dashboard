@@ -122,7 +122,7 @@ const Image = styled.div`
   width: 70px;
   height: 100px;
   flex: 70px 0 0;
-  background-color: ${props => props.theme.chart.secondary};
+  background-color: ${props => props.theme.main.tertiaryBackground};
   margin-right: 30px;
 `;
 
@@ -241,8 +241,9 @@ const ItemList = () => {
           width: 100%;
           top: -5px;
           left: -5px;
+          border-radius: 3px;
           background-color: ${props => props.theme.main.secondaryBackground};
-          box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
           padding: 5px;
           box-sizing: content-box;
         }

@@ -16,12 +16,12 @@ const data = [
   },
   {
     name: 'feb',
-    current: 3000,
-    previous: 1398,
+    current: 5000,
+    previous: 2398,
   },
   {
     name: 'mar',
-    current: 9800,
+    current: 5800,
     previous: 2000,
   },
   {
@@ -41,12 +41,12 @@ const data = [
   },
   {
     name: 'jul',
-    current: 2390,
+    current: 5390,
     previous: 3800,
   },
   {
     name: 'aug',
-    current: 3490,
+    current: 6490,
     previous: 4300,
   },
   {
@@ -74,15 +74,15 @@ const data = [
 const columnChart = ({ theme }) => (
   <div
     css={`
-      height: 280px;
+      height: 400px;
       margin-top: 50px;
     `}
   >
     <ResponsiveContainer>
       <BarChart
-        height={300}
         barSize={10}
         barGap={3}
+        height={400}
         data={data}
         margin={{
           top: 5,
