@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import styled, { withTheme } from 'styled-components';
 import tw from 'tailwind.macro';
 import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
-
+import { animated, useSpring } from 'react-spring';
 import { BarChart, Bar } from 'recharts';
 import { Counter } from '@/components/Counter';
 import { AppContext } from '@/context';
@@ -134,82 +134,121 @@ const LabelColumn = styled.div`
   h6 {
     ${tw`uppercase text-sm tracking-wide mt-0 mb-2`}
     color: ${props => props.theme.main.secondaryForeground};
-}
-padding-right: 20px;
-div{
-    ${tw`font-semibold text-xl tracking-wide`}
   }
+  padding-right: 20px;
+  div{
+      ${tw`font-semibold text-xl tracking-wide`}
+    }
 `;
 
-const Item = ({ data }) => {
+const Item = ({ data, onClick }) => {
   const { setActiveInventory, setShowInventoryPane } = useContext(AppContext);
   const { name, inventory, price, sale, trend } = data;
   const isGrow = sale > 0;
+  const ref = useRef(null);
+
   return (
     <div
       css={`
-        ${tw`flex items-center`}
         padding: 15px;
         border-bottom: 1px solid ${props => props.theme.main.border};
-        &:hover {
-          background-color: ${props => props.theme.main.secondaryBackground};
-        }
       `}
       onClick={() => {
         setShowInventoryPane(true);
         setActiveInventory(data);
+        onClick({
+          top: ref.current.offsetTop,
+          height: ref.current.offsetHeight,
+        });
       }}
+      ref={ref}
     >
-      <Info css="width: 45%">
-        <Image />
-        <Name>{name}</Name>
-      </Info>
-      <LabelColumn css="width: 15%">
-        <h6>Inventory</h6>
-        <div>
-          <Counter fixed={0}>{inventory}</Counter>
-        </div>
-      </LabelColumn>
-      <LabelColumn css="width: 15%">
-        <h6>Price</h6>
-        <div>
-          $<Counter>{price}</Counter>
-        </div>
-      </LabelColumn>
-      <LabelColumn css="width: 15%">
-        <h6>Sales</h6>
-        <div
-          isGrow={isGrow}
-          css={`
-            ${tw`flex`}
-            svg {
-              font-size: 16px;
-              color: ${props =>
-                props.isGrow
-                  ? props.theme.main.success
-                  : props.theme.main.danger};
-            }
-          `}
-        >
-          {isGrow ? <MdArrowUpward /> : <MdArrowDownward />} $
-          <Counter fixed={0}>{Math.abs(sale)}</Counter>
-        </div>
-      </LabelColumn>
-      <StackChart data={trend} />
+      <div
+        css={`
+          ${tw`flex items-center relative z-10`}
+        `}
+      >
+        <Info css="width: 45%">
+          <Image />
+          <Name>{name}</Name>
+        </Info>
+        <LabelColumn css="width: 15%">
+          <h6>Inventory</h6>
+          <div>
+            <Counter fixed={0}>{inventory}</Counter>
+          </div>
+        </LabelColumn>
+        <LabelColumn css="width: 15%">
+          <h6>Price</h6>
+          <div>
+            $<Counter>{price}</Counter>
+          </div>
+        </LabelColumn>
+        <LabelColumn css="width: 15%">
+          <h6>Sales</h6>
+          <div
+            isGrow={isGrow}
+            css={`
+              ${tw`flex`}
+              svg {
+                font-size: 16px;
+                color: ${props =>
+                  props.isGrow
+                    ? props.theme.main.success
+                    : props.theme.main.danger};
+              }
+            `}
+          >
+            {isGrow ? <MdArrowUpward /> : <MdArrowDownward />} $
+            <Counter fixed={0}>{Math.abs(sale)}</Counter>
+          </div>
+        </LabelColumn>
+        <StackChart data={trend} />
+      </div>
     </div>
   );
 };
 
 const ItemList = () => {
+  const [clientRect, setClientRect] = useState(null);
+  const { showInventoryPane } = useContext(AppContext);
+  const { top, opacity, height } = useSpring({
+    top: clientRect ? clientRect.top : 0,
+    opacity: clientRect ? 1 : 0,
+    height: clientRect ? clientRect.height : 0,
+  });
+  useEffect(() => {
+    if (!showInventoryPane) {
+      setClientRect(null);
+    }
+  }, [showInventoryPane]);
   return (
     <div
       css={`
         margin-top: 90px;
+        position: relative;
+        > div:last-child {
+          position: absolute;
+          width: 100%;
+          top: -5px;
+          left: -5px;
+          background-color: ${props => props.theme.main.secondaryBackground};
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+          padding: 5px;
+          box-sizing: content-box;
+        }
       `}
     >
       {items.map((item, index) => (
-        <Item data={item} key={index} />
+        <Item data={item} key={index} onClick={v => setClientRect(v)} />
       ))}
+      <animated.div
+        style={{
+          height: height.interpolate(x => `${x}px`),
+          transform: top.interpolate(x => `translate3d(0, ${x}px, 0)`),
+          opacity: opacity.interpolate(x => x),
+        }}
+      />
     </div>
   );
 };
