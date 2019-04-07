@@ -105,13 +105,15 @@ const columnChart = ({ theme }) => (
         />
         <Bar
           dataKey="current"
-          animationDuration={1000}
+          animationDuration={750}
+          animationBegin={200}
           animationEasing="ease-in-out"
           fill={theme.chart.primary}
         />
         <Bar
           dataKey="previous"
-          animationDuration={1000}
+          animationDuration={750}
+          animationBegin={200}
           animationEasing="ease-in-out"
           fill={theme.chart.secondary}
         />

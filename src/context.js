@@ -1,6 +1,8 @@
 import React from 'react';
 
 const initContext = {
+  loaded: false,
+  setLoaded: () => {},
   activeInventory: null,
   showInventoryPane: false,
   setShowInventoryPane: show => {},

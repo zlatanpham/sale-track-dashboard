@@ -5,7 +5,7 @@ export const Counter = ({ children, fixed = 2 }) => {
   const { number } = useSpring({
     from: { number: 0 },
     to: { number: parseFloat(children) },
-    delay: 100,
+    delay: 400,
     config: config.slow,
   });
   return (

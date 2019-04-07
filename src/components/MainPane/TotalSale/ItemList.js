@@ -10,7 +10,8 @@ import { AppContext } from '@/context';
 const StackChart = withTheme(({ theme, data }) => (
   <BarChart width={110} height={60} barSize={4} data={data}>
     <Bar
-      animationDuration={1000}
+      animationDuration={750}
+      animationBegin={250}
       animationEasing="ease-in-out"
       dataKey="current"
       stackId="a"

@@ -6,7 +6,7 @@ export const ProgressBar = ({ percent }) => {
     from: { width: 0 },
     to: { width: percent },
     config: config.slow,
-    delay: 100,
+    delay: 250,
   });
   return (
     <div
