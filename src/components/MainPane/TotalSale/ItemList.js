@@ -27,7 +27,7 @@ const StackChart = withTheme(({ theme, data }) => (
 ));
 
 const generateChartData = () =>
-  Array.from({ length: 15 }, () => parseInt(Math.random() * 2000 + 500));
+  Array.from({ length: 20 }, () => parseInt(Math.random() * 2000 + 500));
 
 const items = [
   {

@@ -81,32 +81,6 @@ export const Region = props => {
             </div>
           );
         })}
-        {/* {items.map(({ top, left, percent }, index) => {
-          const size = 10 + (percent * 80) / 100;
-          return (
-            <div
-              key={index}
-              css={`
-                position: absolute;
-                border-radius: 100%;
-                width: ${size}px;
-                display: flex;
-                align-items: center;
-                height: ${size}px;
-                justify-content: center;
-                font-weight: bold;
-                font-size: 13px;
-                ${props => `
-                  background-color: ${props.theme.map.markBackground};
-                  color: ${props.theme.map.markForeground};
-                `}
-              `}
-              style={{ top: `${top}%`, left: `${left}%` }}
-            >
-              {percent}%
-            </div>
-          );
-        })} */}
       </div>
     </Container>
   );

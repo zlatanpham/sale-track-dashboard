@@ -20,8 +20,8 @@ export const RightPane = ({ themeToggled, onThemeToggle }) => {
       <Region
         css={`
           border-top: 1px solid ${props => props.theme.main.border};
-          padding-top: 70px;
-          margin-top: 40px;
+          padding-top: 50px;
+          margin-top: 20px;
         `}
       />
     </Container>
