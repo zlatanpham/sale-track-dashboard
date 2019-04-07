@@ -211,17 +211,26 @@ const Item = ({ data, onClick }) => {
 
 const ItemList = () => {
   const [clientRect, setClientRect] = useState(null);
+  const [pTop, setPTop] = useState(0);
   const { showInventoryPane } = useContext(AppContext);
   const { top, opacity, height } = useSpring({
-    top: clientRect ? clientRect.top : 0,
+    top: clientRect ? clientRect.top : pTop,
     opacity: clientRect ? 1 : 0,
     height: clientRect ? clientRect.height : 0,
   });
+
   useEffect(() => {
     if (!showInventoryPane) {
       setClientRect(null);
     }
   }, [showInventoryPane]);
+
+  useEffect(() => {
+    if (clientRect) {
+      setPTop(clientRect.top);
+    }
+  }, [clientRect]);
+
   return (
     <div
       css={`
