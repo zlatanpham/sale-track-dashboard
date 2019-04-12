@@ -1,9 +1,21 @@
 {
-  "name": "create-react-rewired-boilerplate",
-  "version": "0.1.0",
+  "name": "sale-track-dashboard",
+  "version": "1.0",
   "private": true,
+  "author": "Zlatan Pham <zlatan.pham@gmail.com> (https://github.com/zlatanpham)",
+  "repository": "https://github.com/zlatanpham/sale-track-dashboard",
+  "keywords": [
+    "react",
+    "dashboard",
+    "rechart",
+    "hook",
+    "experiment",
+    "demo",
+    "react-spring",
+    "animation",
+    "d3"
+  ],
   "dependencies": {
-    "babel-plugin-tailwind-components": "^0.5.10",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -32,6 +44,7 @@
   "devDependencies": {
     "babel-plugin-macros": "^2.5.0",
     "babel-plugin-styled-components": "^1.10.0",
+    "babel-plugin-tailwind-components": "^0.5.10",
     "customize-cra": "^0.2.12",
     "glob-all": "^3.1.0",
     "purgecss-webpack-plugin": "^1.4.0",
