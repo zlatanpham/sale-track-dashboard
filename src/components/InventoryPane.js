@@ -83,12 +83,13 @@ export const InventoryPane = () => {
   return (
     <animated.div
       style={{
-        position: 'absolute',
+        position: 'fixed',
         right: 0,
         top: 0,
         bottom: 0,
         width: '480px',
         zIndex: 999,
+        willChange: 'transform',
         transform: transform.interpolate(x => `translate3d(${x}%, 0, 0)`),
       }}
     >

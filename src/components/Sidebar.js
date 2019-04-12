@@ -12,21 +12,23 @@ import {
 import { AppContext } from '@/context';
 
 const Container = styled.div`
-  width: 120px;
-  background-color: ${props => props.theme.main.secondaryBackground};
-  text-align: center;
-  ${tw`text-center flex flex-col justify-between absolute pin-y pin-l`}
-  height:100vh;
+  > div{
+    ${tw`text-center text-center flex flex-col justify-between fixed pin-y pin-l`}
+    background-color: ${props => props.theme.main.secondaryBackground};
+    willChange: transform;
+    width: 120px;
+    height:100vh;
+  }
 `;
 
 const Sidebar = () => {
   const { loaded } = useContext(AppContext);
   const { move } = useSpring({ move: loaded ? 0 : -102 });
   return (
-    <animated.div
-      style={{ transform: move.interpolate(x => `translate3d(${x}%, 0, 0)`) }}
-    >
-      <Container>
+    <Container>
+      <animated.div
+        style={{ transform: move.interpolate(x => `translate3d(${x}%, 0, 0)`) }}
+      >
         <div>
           <div
             css={`
@@ -38,18 +40,18 @@ const Sidebar = () => {
           </div>
           <ul
             css={`
-        ${tw`list-reset text-xl`}
-        padding-top: 30px;
-        border-top: 1px solid ${props => props.theme.main.border};
-        li {
-          height: 70px;
-          ${tw`flex items-center justify-center`}
-          color: ${props => props.theme.main.foreground};
-          &:not(:first-child){
-            opacity: 0.5
-          }
-        }
-      `}
+              ${tw`list-reset text-xl`}
+              padding-top: 30px;
+              border-top: 1px solid ${props => props.theme.main.border};
+              li {
+                height: 70px;
+                ${tw`flex items-center justify-center`}
+                color: ${props => props.theme.main.foreground};
+                &:not(:first-child){
+                  opacity: 0.5
+                }
+              }
+            `}
           >
             <li>
               <MdTimeline />
@@ -73,8 +75,8 @@ const Sidebar = () => {
         >
           <MdMoreHoriz />
         </div>
-      </Container>
-    </animated.div>
+      </animated.div>
+    </Container>
   );
 };
 
